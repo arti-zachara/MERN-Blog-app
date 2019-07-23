@@ -1,0 +1,9 @@
+{
+  "name": "MERN",
+  "version": "1.0.0",
+  "description": "NERN stack - Blog app",
+  "main": "index.js",
+  "repository": "git@github.com:arti-zachara/MERN-Blog-app.git",
+  "author": "arti Zachara\t",
+  "license": "MIT"
+}
