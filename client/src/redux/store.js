@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
 // import reducers
-import posts from "./postsRedux";
+import posts from "./PostsRedux";
 
 // combine reducers
 const rootReducer = combineReducers({
