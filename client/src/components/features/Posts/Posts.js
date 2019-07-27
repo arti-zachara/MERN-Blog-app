@@ -2,6 +2,7 @@ import React from "react";
 import { PropTypes } from "prop-types";
 
 import PostsList from "../PostsList/PostsList";
+import Spinner from "../../common/Spinner/Spinner";
 
 class Posts extends React.Component {
   componentDidMount() {
@@ -10,10 +11,11 @@ class Posts extends React.Component {
   }
 
   render() {
-    const { posts } = this.props;
+    const { posts, request } = this.props;
 
     return (
       <div>
+        {request.pending && <Spinner />}
         <PostsList posts={posts} />
       </div>
     );
