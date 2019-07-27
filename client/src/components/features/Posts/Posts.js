@@ -13,7 +13,6 @@ class Posts extends React.Component {
 
   render() {
     const { posts, request, postsNumber } = this.props;
-    console.log(request);
 
     if (
       request.pending === false &&
