@@ -26,10 +26,12 @@ class SinglePost extends React.Component {
         </div>
       );
     } else if (
-      (request.pending === true && request.success === null) ||
-      (request.pending === false &&
-        request.success === true &&
-        singlePost !== undefined)
+      request.pending === true &&
+      request.success === null
+      //   ||
+      //   (request.pending === false &&
+      //     request.success === true &&
+      //     singlePost !== undefined)
     ) {
       return (
         <div>

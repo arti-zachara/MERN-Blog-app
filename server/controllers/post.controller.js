@@ -8,3 +8,11 @@ exports.getPosts = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
+exports.getSinglePost = async (req, res) => {
+  try {
+    res.status(200).json(await Post.findById(req.params.id));
+  } catch (error) {
+    res.status(500).json(err);
+  }
+};
