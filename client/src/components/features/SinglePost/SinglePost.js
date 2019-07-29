@@ -47,11 +47,11 @@ class SinglePost extends React.Component {
     } else if (
       request.pending === false &&
       request.success === true &&
-      singlePost === {}
+      singlePost === null
     ) {
       return (
         <div>
-          <Alert variant="info">No posts</Alert>
+          <Alert variant="info">No post</Alert>
         </div>
       );
     } else {
