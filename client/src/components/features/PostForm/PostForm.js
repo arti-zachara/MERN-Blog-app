@@ -18,20 +18,32 @@ class PostForm extends React.Component {
     }
   };
 
+  handleChange = e => {
+    const { post } = this.state;
+    this.setState({ post: { ...post, [e.target.name]: e.target.value } });
+  };
+
+  handleEditor = text => {
+    const { post } = this.state;
+    this.setState({ post: { ...post, content: text } });
+  };
+
   render() {
     const { post } = this.state;
+    const { handleChange, handleEditor } = this;
 
     return (
       <div>
-        <TextField label="Title" value={post.title} />
+        <TextField label="Title" value={post.title} onChange={handleChange} />
 
-        <TextField label="Author" value={post.author} />
+        <TextField label="Author" value={post.author} onChange={handleChange} />
 
         <SectionTitle>Edit post content</SectionTitle>
 
         <Editor
           className="content-editor"
           text={post.content}
+          onChange={handleEditor}
           options={{
             placeholder: false,
             toolbar: {
