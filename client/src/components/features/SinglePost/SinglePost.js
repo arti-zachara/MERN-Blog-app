@@ -9,7 +9,8 @@ import "../PostSummary/PostSummary.scss";
 
 class SinglePost extends React.Component {
   componentDidMount() {
-    const { loadSinglePost, id } = this.props;
+    const { loadSinglePost, id, resetRequestStatus } = this.props;
+    resetRequestStatus();
     loadSinglePost(id);
   }
 

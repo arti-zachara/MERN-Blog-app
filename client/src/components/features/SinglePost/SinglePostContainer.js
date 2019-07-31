@@ -2,7 +2,8 @@ import { connect } from "react-redux";
 import {
   getRequest,
   getSinglePost,
-  loadSinglePostRequest
+  loadSinglePostRequest,
+  resetRequest
 } from "../../../redux/PostsRedux";
 import SinglePost from "./SinglePost";
 
@@ -12,7 +13,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadSinglePost: id => dispatch(loadSinglePostRequest(id))
+  loadSinglePost: id => dispatch(loadSinglePostRequest(id)),
+  resetRequestStatus: () => dispatch(resetRequest())
 });
 
 export default connect(
