@@ -1,9 +1,10 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 
-import PostsList from "../PostsList/PostsList";
+import Pagination from "../../common/Pagination/Pagination";
 import Spinner from "../../common/Spinner/Spinner";
 import Alert from "../../common/Alert/Alert";
+import PostsList from "../PostsList/PostsList";
 
 class Posts extends React.Component {
   componentDidMount() {
@@ -23,6 +24,12 @@ class Posts extends React.Component {
       return (
         <div>
           <PostsList posts={posts} />
+          <Pagination
+            pages={10}
+            onPageChange={page => {
+              console.log(page);
+            }}
+          />
         </div>
       );
     } else if (request.pending === true && request.success === null) {
