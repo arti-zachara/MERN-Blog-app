@@ -25,14 +25,7 @@ class SinglePost extends React.Component {
           </article>
         </div>
       );
-    } else if (
-      request.pending === true &&
-      request.success === null
-      //   ||
-      //   (request.pending === false &&
-      //     request.success === true &&
-      //     singlePost !== undefined)
-    ) {
+    } else if (request.pending === true && request.success === null) {
       return (
         <div>
           <Spinner />
