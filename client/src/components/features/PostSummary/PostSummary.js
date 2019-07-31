@@ -21,7 +21,8 @@ const PostSummary = ({ id, title, content }) => (
 PostSummary.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
-  content: PropTypes.string
+  content: PropTypes.string,
+  author: PropTypes.string
 };
 
 export default PostSummary;
