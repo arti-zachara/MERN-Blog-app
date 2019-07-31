@@ -26,6 +26,17 @@ class PostForm extends React.Component {
 
         <SectionTitle>Edit post content</SectionTitle>
 
+        <Editor
+          className="content-editor"
+          text={post.content}
+          options={{
+            placeholder: false,
+            toolbar: {
+              buttons: ["bold", "italic", "underline", "anchor", "h2", "h3"]
+            }
+          }}
+        />
+
         <Button variant="primary">Add post</Button>
       </div>
     );
