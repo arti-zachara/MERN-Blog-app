@@ -16,11 +16,6 @@ const loadTestData = async () => {
     }
   ];
 
-  // Post.deleteMany({ id: "21sd42sdsaaf" }, function(err) {
-  //   if (err) return handleError(err);
-  //   // deleted at most one tank document
-  // });
-
   try {
     let counter = await Post.countDocuments();
     if (counter === 0) {
