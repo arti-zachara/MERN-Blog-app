@@ -7,6 +7,8 @@ export const getRequest = ({ posts }) => posts.request;
 export const getPosts = ({ posts }) => posts.data;
 export const getPostsNumber = ({ posts }) => posts.data.length;
 export const getSinglePost = ({ posts }) => posts.singlePost;
+export const getPages = ({ posts }) =>
+  Math.ceil(posts.amount / posts.postsPerPage);
 
 /* ACTIONS */
 // action name creator
