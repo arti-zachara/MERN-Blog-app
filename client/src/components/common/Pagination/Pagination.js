@@ -23,11 +23,15 @@ class Pagination extends React.Component {
     return (
       <div className="pagination">
         <ul className="pagination__list">
+          {presentPage >= 1 && (
+            <li className="pagination__list__item"> back </li>
+          )}
           {[...Array(pages)].map((el, page) => (
             <li
               key={++page}
               onClick={() => {
                 changePage(page);
+                console.log(presentPage, page);
               }}
               className={`pagination__list__item${
                 page === presentPage ? " pagination__list__item--active" : ""
@@ -36,6 +40,9 @@ class Pagination extends React.Component {
               {page}
             </li>
           ))}
+          {presentPage !== pages && (
+            <li className="pagination__list__item"> forward</li>
+          )}
         </ul>
       </div>
     );
