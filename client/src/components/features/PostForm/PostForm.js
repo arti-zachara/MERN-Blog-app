@@ -79,6 +79,7 @@ class PostForm extends React.Component {
 
           <Editor
             className="content-editor"
+            tag="pre"
             text={post.content}
             onChange={handleEditor}
             options={{
