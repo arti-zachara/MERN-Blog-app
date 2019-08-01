@@ -1,5 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronRight,
+  faChevronLeft
+} from "@fortawesome/free-solid-svg-icons";
 
 import "./Pagination.scss";
 
@@ -24,7 +29,9 @@ class Pagination extends React.Component {
       <div className="pagination">
         <ul className="pagination__list">
           {presentPage >= 1 && (
-            <li className="pagination__list__item"> back </li>
+            <li className="pagination__list__item">
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </li>
           )}
           {[...Array(pages)].map((el, page) => (
             <li
@@ -41,7 +48,9 @@ class Pagination extends React.Component {
             </li>
           ))}
           {presentPage !== pages && (
-            <li className="pagination__list__item"> forward</li>
+            <li className="pagination__list__item">
+              <FontAwesomeIcon icon={faChevronRight} />
+            </li>
           )}
         </ul>
       </div>
