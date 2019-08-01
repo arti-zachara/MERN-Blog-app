@@ -7,5 +7,7 @@ const PostController = require("../controllers/post.controller");
 router.route("/posts").get(PostController.getPosts);
 // get a specific post
 router.route("/posts/:id").get(PostController.getSinglePost);
+// add posts
+router.route("/posts").post(PostController.addPost);
 
 module.exports = router;

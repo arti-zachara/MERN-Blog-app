@@ -3,7 +3,8 @@ import {
   getRequest,
   getPosts,
   getPostsNumber,
-  loadPostsRequest
+  loadPostsRequest,
+  resetRequest
 } from "../../../redux/PostsRedux";
 import Posts from "./Posts";
 
@@ -14,7 +15,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadPosts: () => dispatch(loadPostsRequest())
+  loadPosts: () => dispatch(loadPostsRequest()),
+  resetRequestStatus: () => dispatch(resetRequest())
 });
 
 export default connect(
