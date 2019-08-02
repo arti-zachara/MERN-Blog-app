@@ -1,6 +1,6 @@
 import React from "react";
 import { PropTypes } from "prop-types";
-import { FacebookProvider, Comments } from "react-facebook";
+import { FacebookProvider, Comments, ShareButton } from "react-facebook";
 import { withRouter } from "react-router-dom";
 
 import Spinner from "../../common/Spinner/Spinner";
@@ -25,9 +25,14 @@ class SinglePost extends React.Component {
         <div>
           <article className="post-summary">
             <SmallTitle>{singlePost.title}</SmallTitle>
-            <p>author: {singlePost.author}</p>
-            <HtmlBox>{singlePost.content}</HtmlBox>
             <FacebookProvider appId="429404687651525">
+              <ShareButton href={`${BASE_URL}${location.pathname}`}>
+                Share
+              </ShareButton>
+
+              <p>author: {singlePost.author}</p>
+              <HtmlBox>{singlePost.content}</HtmlBox>
+
               <Comments href={`${BASE_URL}${location.pathname}`} />
             </FacebookProvider>
           </article>
