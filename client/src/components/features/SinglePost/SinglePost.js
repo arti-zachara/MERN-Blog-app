@@ -7,6 +7,7 @@ import Spinner from "../../common/Spinner/Spinner";
 import Alert from "../../common/Alert/Alert";
 import SmallTitle from "../../common/SmallTitle/SmallTitle";
 import HtmlBox from "../../common/HtmlBox/HtmlBox";
+
 import { BASE_URL } from "../../../config";
 import "../PostSummary/PostSummary.scss";
 
@@ -26,7 +27,10 @@ class SinglePost extends React.Component {
           <article className="post-summary">
             <SmallTitle>{singlePost.title}</SmallTitle>
             <FacebookProvider appId="429404687651525">
-              <ShareButton href={`${BASE_URL}${location.pathname}`}>
+              <ShareButton
+                className="button button--primary"
+                href={`${BASE_URL}${location.pathname}`}
+              >
                 Share
               </ShareButton>
 
