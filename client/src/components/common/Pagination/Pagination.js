@@ -17,8 +17,9 @@ class Pagination extends React.Component {
     const { onPageChange } = this.props;
     const { presentPage } = this.state;
     this.setState({ presentPage: newPage });
-    console.log("Present page: " + presentPage + ", newPage: " + newPage);
+
     onPageChange(newPage);
+    console.log("Present page: " + presentPage + ", newPage: " + newPage);
   };
 
   skipToPage = increment => {
