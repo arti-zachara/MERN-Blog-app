@@ -20,6 +20,13 @@ class Pagination extends React.Component {
     onPageChange(newPage);
   };
 
+  skipToPage = increment => {
+    const { onPageChange } = this.props;
+    const { presentPage } = this.state;
+    const targetPage = presentPage + increment;
+    onPageChange(targetPage);
+  };
+
   render() {
     const { pages, onPageChange } = this.props;
     const { presentPage } = this.state;
@@ -28,9 +35,14 @@ class Pagination extends React.Component {
     return (
       <div className="pagination">
         <ul className="pagination__list">
-          {presentPage >= 1 && (
+          {presentPage >= 2 && (
             <li className="pagination__list__item">
-              <FontAwesomeIcon icon={faChevronLeft} />
+              <FontAwesomeIcon
+                icon={faChevronLeft}
+                onClick={() => {
+                  skipToPage(-1);
+                }}
+              />
             </li>
           )}
           {[...Array(pages)].map((el, page) => (
@@ -49,7 +61,12 @@ class Pagination extends React.Component {
           ))}
           {presentPage !== pages && (
             <li className="pagination__list__item">
-              <FontAwesomeIcon icon={faChevronRight} />
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                onClick={() => {
+                  skipToPage(1);
+                }}
+              />
             </li>
           )}
         </ul>
