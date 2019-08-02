@@ -1,10 +1,14 @@
 import React from "react";
 import { PropTypes } from "prop-types";
+import { FacebookProvider, Comments, ShareButton } from "react-facebook";
+import { withRouter } from "react-router-dom";
 
 import Spinner from "../../common/Spinner/Spinner";
 import Alert from "../../common/Alert/Alert";
 import SmallTitle from "../../common/SmallTitle/SmallTitle";
 import HtmlBox from "../../common/HtmlBox/HtmlBox";
+
+import { BASE_URL } from "../../../config";
 import "../PostSummary/PostSummary.scss";
 
 class RandomPost extends React.Component {
@@ -15,15 +19,25 @@ class RandomPost extends React.Component {
   }
 
   render() {
-    const { singlePost, request } = this.props;
+    const { singlePost, request, location } = this.props;
 
     if (request.pending === false && request.success === true && singlePost) {
       return (
         <div>
           <article className="post-summary">
             <SmallTitle>{singlePost.title}</SmallTitle>
-            <p>author: {singlePost.author}</p>
-            <HtmlBox>{singlePost.content}</HtmlBox>
+            <FacebookProvider appId="429404687651525">
+              <ShareButton
+                className="button button--primary"
+                href={`${BASE_URL}${location.pathname}`}
+              >
+                Share
+              </ShareButton>
+
+              <p>author: {singlePost.author}</p>
+              <HtmlBox>{singlePost.content}</HtmlBox>
+              <Comments href={`${BASE_URL}${location.pathname}`} />
+            </FacebookProvider>
           </article>
         </div>
       );
@@ -65,4 +79,4 @@ RandomPost.propTypes = {
   loadRandomPost: PropTypes.func.isRequired
 };
 
-export default RandomPost;
+export default withRouter(props => <RandomPost {...props} />);
