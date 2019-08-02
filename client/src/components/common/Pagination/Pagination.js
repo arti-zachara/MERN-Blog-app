@@ -15,11 +15,8 @@ class Pagination extends React.Component {
 
   changePage = newPage => {
     const { onPageChange } = this.props;
-    const { presentPage } = this.state;
     this.setState({ presentPage: newPage });
-
     onPageChange(newPage);
-    console.log("Present page: " + presentPage + ", newPage: " + newPage);
   };
 
   skipToPage = increment => {
@@ -52,7 +49,6 @@ class Pagination extends React.Component {
               key={++page}
               onClick={() => {
                 changePage(page);
-                console.log(presentPage, page);
               }}
               className={`pagination__list__item${
                 page === presentPage ? " pagination__list__item--active" : ""
