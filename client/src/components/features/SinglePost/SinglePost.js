@@ -1,10 +1,13 @@
 import React from "react";
 import { PropTypes } from "prop-types";
+import { FacebookProvider, Comments } from "react-facebook";
+import { withRouter } from "react-router-dom";
 
 import Spinner from "../../common/Spinner/Spinner";
 import Alert from "../../common/Alert/Alert";
 import SmallTitle from "../../common/SmallTitle/SmallTitle";
 import HtmlBox from "../../common/HtmlBox/HtmlBox";
+import { BASE_URL } from "../../../config";
 import "../PostSummary/PostSummary.scss";
 
 class SinglePost extends React.Component {
@@ -15,7 +18,7 @@ class SinglePost extends React.Component {
   }
 
   render() {
-    const { singlePost, request } = this.props;
+    const { singlePost, request, location } = this.props;
 
     if (request.pending === false && request.success === true && singlePost) {
       return (
@@ -24,6 +27,9 @@ class SinglePost extends React.Component {
             <SmallTitle>{singlePost.title}</SmallTitle>
             <p>author: {singlePost.author}</p>
             <HtmlBox>{singlePost.content}</HtmlBox>
+            <FacebookProvider appId="429404687651525">
+              <Comments href={`${BASE_URL}${location.pathname}`} />
+            </FacebookProvider>
           </article>
         </div>
       );
@@ -65,4 +71,4 @@ SinglePost.propTypes = {
   loadSinglePost: PropTypes.func.isRequired
 };
 
-export default SinglePost;
+export default withRouter(props => <SinglePost {...props} />);
