@@ -22,12 +22,10 @@ class Pagination extends React.Component {
   };
 
   skipToPage = increment => {
-    const { onPageChange } = this.props;
+    const { changePage } = this;
     const { presentPage } = this.state;
     const targetPage = presentPage + increment;
-    this.setState({ presentPage: targetPage });
-    console.log("Present page: " + presentPage + ", targetPage: " + targetPage);
-    onPageChange(targetPage);
+    changePage(targetPage);
   };
 
   render() {
