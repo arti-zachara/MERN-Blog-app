@@ -9,6 +9,16 @@ exports.getPosts = async (req, res) => {
     res.status(500).json(err);
   }
 };
+// get a random post
+exports.getRandomPost = async (req, res) => {
+  try {
+    const count = await Post.count();
+    const rand = Math.floor(Math.random() * count);
+    res.status(200).json(await Post.findOne().skip(rand));
+  } catch (error) {
+    res.status(500).json(err);
+  }
+};
 
 // get a single post
 exports.getSinglePost = async (req, res) => {

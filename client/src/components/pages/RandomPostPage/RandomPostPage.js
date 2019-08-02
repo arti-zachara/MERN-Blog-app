@@ -1,11 +1,10 @@
 import React from "react";
 
-import PageTitle from "../../common/PageTitle/PageTitle";
-import SinglePostContainer from "../../features/SinglePost/SinglePostContainer";
+import RandomPostContainer from "../../features/RandomPost/RandomPostContainer";
 
 const RandomPostPage = props => (
   <div>
-    <PageTitle>Random Post</PageTitle>
+    <RandomPostContainer />
   </div>
 );
 
