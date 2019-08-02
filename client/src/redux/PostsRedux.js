@@ -9,6 +9,7 @@ export const getPostsNumber = ({ posts }) => posts.postsNumber;
 export const getSinglePost = ({ posts }) => posts.singlePost;
 export const getPages = ({ posts }) =>
   Math.ceil(posts.postsNumber / posts.postsPerPage);
+export const getPresentPage = ({ posts }) => posts.presentPage;
 
 /* ACTIONS */
 // action name creator

@@ -19,7 +19,7 @@ class Posts extends React.Component {
   };
 
   render() {
-    const { posts, request, postsNumber, pages } = this.props;
+    const { posts, request, postsNumber, pages, presentPage } = this.props;
     const { loadPostsPage } = this;
 
     if (
@@ -30,7 +30,11 @@ class Posts extends React.Component {
       return (
         <div>
           <PostsList posts={posts} />
-          <Pagination pages={pages} onPageChange={loadPostsPage} />
+          <Pagination
+            pages={pages}
+            initialPage={presentPage}
+            onPageChange={loadPostsPage}
+          />
         </div>
       );
     } else if (request.pending === true && request.success === null) {
@@ -74,7 +78,8 @@ Posts.propTypes = {
   postsNumber: PropTypes.number.isRequired,
   pages: PropTypes.number.isRequired,
   loadPostsByPage: PropTypes.func.isRequired,
-  resetRequestStatus: PropTypes.func.isRequired
+  resetRequestStatus: PropTypes.func.isRequired,
+  presentPage: PropTypes.number.isRequired
 };
 
 export default Posts;
