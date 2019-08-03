@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
+const path = require("path");
 
 const config = require("./config");
 const postRoutes = require("./routes/post.routes");
@@ -14,6 +15,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/api", postRoutes);
 app.use(helmet());
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, "/../client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/../client/build/index.html"));
+});
 
 // connects our back end code with the database
 mongoose.connect(config.DB, {
