@@ -7,10 +7,17 @@ import Alert from "../../common/Alert/Alert";
 import PostsList from "../PostsList/PostsList";
 
 class Posts extends React.Component {
+  state = {
+    initialPage: this.props.initialPage || 1,
+    postsPerPage: this.props.postsPerPage || 10,
+    pagination: this.props.pagination
+  };
+
   componentDidMount() {
     const { loadPostsByPage, resetRequestStatus } = this.props;
+    const { initialPage, postsPerPage } = this.state;
     resetRequestStatus();
-    loadPostsByPage(1);
+    loadPostsByPage(initialPage, postsPerPage);
   }
 
   loadPostsPage = page => {
@@ -19,13 +26,26 @@ class Posts extends React.Component {
   };
 
   render() {
+    const { pagination } = this.state;
     const { posts, request, postsNumber, pages, presentPage } = this.props;
     const { loadPostsPage } = this;
 
     if (
       request.pending === false &&
       request.success === true &&
-      postsNumber > 0
+      postsNumber > 0 &&
+      !pagination
+    ) {
+      return (
+        <div>
+          <PostsList posts={posts} />
+        </div>
+      );
+    } else if (
+      request.pending === false &&
+      request.success === true &&
+      postsNumber > 0 &&
+      pagination
     ) {
       return (
         <div>
@@ -79,7 +99,10 @@ Posts.propTypes = {
   pages: PropTypes.number.isRequired,
   loadPostsByPage: PropTypes.func.isRequired,
   resetRequestStatus: PropTypes.func.isRequired,
-  presentPage: PropTypes.number.isRequired
+  presentPage: PropTypes.number.isRequired,
+  initialPage: PropTypes.number,
+  postsPerPage: PropTypes.number,
+  pagination: PropTypes.bool
 };
 
 export default Posts;
