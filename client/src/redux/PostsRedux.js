@@ -5,8 +5,11 @@ import { API_URL } from "../config";
 /* SELECTORS */
 export const getRequest = ({ posts }) => posts.request;
 export const getPosts = ({ posts }) => posts.data;
-export const getPostsNumber = ({ posts }) => posts.data.length;
+export const getPostsNumber = ({ posts }) => posts.postsNumber;
 export const getSinglePost = ({ posts }) => posts.singlePost;
+export const getPages = ({ posts }) =>
+  Math.ceil(posts.postsNumber / posts.postsPerPage);
+export const getPresentPage = ({ posts }) => posts.presentPage;
 
 /* ACTIONS */
 // action name creator
@@ -147,11 +150,10 @@ export const addPostRequest = post => {
   };
 };
 
-export const loadPostsByPageRequest = page => {
+export const loadPostsByPageRequest = (page, postsPerPage) => {
   return async dispatch => {
     dispatch(startRequest());
     try {
-      const postsPerPage = 10;
       const startAt = (page - 1) * postsPerPage;
       const limit = postsPerPage;
 

@@ -1,28 +1,60 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 
-import PostsList from "../PostsList/PostsList";
+import Pagination from "../../common/Pagination/Pagination";
 import Spinner from "../../common/Spinner/Spinner";
 import Alert from "../../common/Alert/Alert";
+import PostsList from "../PostsList/PostsList";
 
 class Posts extends React.Component {
+  state = {
+    initialPage: this.props.initialPage || 1,
+    postsPerPage: this.props.postsPerPage || 10,
+    pagination: this.props.pagination
+  };
+
   componentDidMount() {
-    const { loadPosts, resetRequestStatus } = this.props;
+    const { loadPostsByPage, resetRequestStatus } = this.props;
+    const { initialPage, postsPerPage } = this.state;
     resetRequestStatus();
-    loadPosts();
+    loadPostsByPage(initialPage, postsPerPage);
   }
 
+  loadPostsPage = page => {
+    const { loadPostsByPage } = this.props;
+    loadPostsByPage(page);
+  };
+
   render() {
-    const { posts, request, postsNumber } = this.props;
+    const { pagination } = this.state;
+    const { posts, request, postsNumber, pages, presentPage } = this.props;
+    const { loadPostsPage } = this;
 
     if (
       request.pending === false &&
       request.success === true &&
-      postsNumber > 0
+      postsNumber > 0 &&
+      !pagination
     ) {
       return (
         <div>
           <PostsList posts={posts} />
+        </div>
+      );
+    } else if (
+      request.pending === false &&
+      request.success === true &&
+      postsNumber > 0 &&
+      pagination
+    ) {
+      return (
+        <div>
+          <PostsList posts={posts} />
+          <Pagination
+            pages={pages}
+            initialPage={presentPage}
+            onPageChange={loadPostsPage}
+          />
         </div>
       );
     } else if (request.pending === true && request.success === null) {
@@ -62,7 +94,15 @@ Posts.propTypes = {
       author: PropTypes.string.isRequired
     })
   ),
-  loadPosts: PropTypes.func.isRequired
+  request: PropTypes.object.isRequired,
+  postsNumber: PropTypes.number.isRequired,
+  pages: PropTypes.number.isRequired,
+  loadPostsByPage: PropTypes.func.isRequired,
+  resetRequestStatus: PropTypes.func.isRequired,
+  presentPage: PropTypes.number.isRequired,
+  initialPage: PropTypes.number,
+  postsPerPage: PropTypes.number,
+  pagination: PropTypes.bool
 };
 
 export default Posts;
