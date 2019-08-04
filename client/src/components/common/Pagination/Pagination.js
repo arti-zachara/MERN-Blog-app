@@ -14,9 +14,9 @@ class Pagination extends React.Component {
   };
 
   changePage = newPage => {
-    const { onPageChange } = this.props;
+    const { onPageChange, postsPerPage } = this.props;
     this.setState({ presentPage: newPage });
-    onPageChange(newPage);
+    onPageChange(newPage, postsPerPage);
   };
 
   skipToPage = increment => {
@@ -76,7 +76,8 @@ class Pagination extends React.Component {
 Pagination.propTypes = {
   pages: PropTypes.number.isRequired,
   initialPage: PropTypes.number,
-  onPageChange: PropTypes.func.isRequired
+  onPageChange: PropTypes.func.isRequired,
+  postsPerPage: PropTypes.number
 };
 
 export default Pagination;

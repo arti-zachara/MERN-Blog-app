@@ -22,11 +22,12 @@ class Posts extends React.Component {
 
   loadPostsPage = page => {
     const { loadPostsByPage } = this.props;
-    loadPostsByPage(page);
+    const { postsPerPage } = this.state;
+    loadPostsByPage(page, postsPerPage);
   };
 
   render() {
-    const { pagination } = this.state;
+    const { pagination, postsPerPage } = this.state;
     const { posts, request, postsNumber, pages, presentPage } = this.props;
     const { loadPostsPage } = this;
 
@@ -54,6 +55,7 @@ class Posts extends React.Component {
             pages={pages}
             initialPage={presentPage}
             onPageChange={loadPostsPage}
+            postsPerPage={postsPerPage}
           />
         </div>
       );
